@@ -1,4 +1,4 @@
-
+import com.mercedesbenz.*;
 import com.mercedesbenz.yactopipeline.YactoPipeline;
 
 def buildType = new YactoPipeline(
