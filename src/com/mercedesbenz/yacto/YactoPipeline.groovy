@@ -1,5 +1,5 @@
-package com.mercedesbenz.yactopipeline;
-import com.mercedesbenz.yactopipeline.BasePipelineType 
+package com.mercedesbenz.yacto;
+import com.mercedesbenz.yacto.BasePipelineType 
 
 class YactoPipeline extends BasePipelineType {
     def dockerImage = "ubuntu"

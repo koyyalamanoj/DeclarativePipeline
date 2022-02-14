@@ -1,4 +1,4 @@
-package com.mercedesbenz.yactopipeline;
+package com.mercedesbenz.yacto;
 
 
 

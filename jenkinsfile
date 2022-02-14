@@ -1,4 +1,4 @@
-import com.mercedesbenz.*;
+import com.mercedesbenz.yacto.YactoPipeline;
 
 def buildType = new YactoPipeline(
       dockerImage:'windows',
