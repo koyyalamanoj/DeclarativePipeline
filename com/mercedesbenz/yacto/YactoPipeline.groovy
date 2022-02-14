@@ -1,5 +1,5 @@
 package com.mercedesbenz.yacto;
-import com.mercedesbenz.yacto.BasePipelineType 
+import com.mercedesbenz.yacto.BasePipelineType;
 
 class YactoPipeline extends BasePipelineType {
     def dockerImage = "ubuntu"
@@ -20,8 +20,9 @@ class YactoPipeline extends BasePipelineType {
     void dockerBuild(){
         println "dockerbuilds happens here : ${this.dockerImage}"
         
-    }
-   void runTestcommand() {
-        println "executing test here with below command: \n"+''+ testcommand
-} 
+    } 
+    void runTestcommand(){
+         println "executing test here with below command: \n"+''+ testcommand
+        
+    } 
 }
