@@ -1,6 +1,6 @@
-package com.myproject.mypipelinetype;
+package com.mercedesbenz.yactopipeline;
 
-import com.myproject.*
+
 
 abstract class BasePipelineType  {
 
@@ -8,15 +8,11 @@ abstract class BasePipelineType  {
     def dockerFilePath = ''
     def dockerFileName = ''
   
-    
-    String runTestcommand() {
-        println "executing test here with below command: \n"+''+ testcommand
-    }
     abstract protected void buildStesps()
     abstract protected void dockerBuild()
+    abstract protected void runTestcommand()
 
     void startPipeline(){
         this.build()
-        runTestcommand()
     }
 }
