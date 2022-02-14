@@ -1,0 +1,141 @@
+pipeline {
+    agent any
+    stages {
+        stage('Setup parameters') {
+            steps {
+                script { 
+                    properties([
+                        parameters([
+                            checkbox(
+                                default_value:Static_Check, 
+                                name: 'Static_Check'
+                            ),
+                            checkbox(
+                                default_value:QA, 
+                                name: 'QA'
+                            ),
+                            checkbox(
+                                default_value:Unit_Test, 
+                                name: 'Unit_Test'
+                            ),
+                            string(
+                                defaultValue: 'Success_Email', 
+                                name: 'STRING-PARAMETER', 
+                                trim: true
+                            ),
+                            string(
+                                defaultValue: 'Failure_Email', 
+                                name: 'STRING-PARAMETER', 
+                                trim: true
+                            )
+                        ])
+                    ])
+                }
+            }
+        }
+
+                      stage('BranchPull') {
+                        steps {
+                              echo 'pulling ..'+env.BRANCH_NAME
+                            checkout scm    
+}
+}
+                     stage('APIGetMethod') {
+                     steps {
+                    def get = new URL("https://calendarific.com/api/v2/holidays?&api_key=d20d05ccb411d9ce3b56b654971e17a29b0aa1ed&country=IN&year=2021").openConnection();
+def getRC = get.getResponseCode();
+println(getRC);
+if(getRC.equals(200)) {
+    println(get.getInputStream().getText());
+     $holiday[] = get.getInputStream().getText();
+}
+
+
+}
+}
+                      stage('CONTINOUSTESTING') {
+                         steps {
+                       for u in "${holidy[@]}"
+                       if [u=="$env.date"]; 
+                        then
+                        end;
+                       else
+                        echo $u;
+                       fi
+                     
+
+                    
+}
+}
+                        stage('CONTINOUSBUILDING'){
+                            steps {
+                          if [u!="$env.date"];
+                          then
+                          stringfy.json(u);
+                          sh 'touch holiday'
+                          sh 'scp u ubuntu@19.2.4.5:holiday'
+                          sh 'zip u.zip'
+                        
+}
+}
+                      stage('CONTINOUSBUILDING'){
+                           steps {
+                          if [u!="$env.date"];
+                           then
+                             elif [Static_Check="enabled"]              
+                             sh 'touch holiday'
+                          sh 'scp u ubuntu@19.2.4.5:holiday'
+                          sh 'zip u.zip'
+                      fi
+}
+}
+                        stage('CONTINOUSBUILDING'){
+                           steps {
+                          if [u!="$env.date"];;
+                           ten
+                             elif [QA="enabled"]              
+                             sh 'touch holiday'
+                          sh 'scp u ubuntu@19.2.4.5:holiday'
+                          sh 'zip u.zip'
+                        fi
+}
+}
+
+                      stage('CONTINOUSTESTING'){
+                           steps {
+                          if [u!="$env.date"];;
+                           
+                             sh 'mvn test'              
+                             sh 'touch holiday'
+                          sh 'scp u ubuntu@19.2.4.5:holiday'
+                          sh 'zip u.zip'
+                        fi
+}
+}
+
+                       stage('Summary'){
+                           steps {
+                          if [u!="$env.date"];
+                            then  
+                           elif [stage == "enabled"];
+                             echo stage
+                           fi
+
+                  post
+    {
+        success
+        {
+            
+                mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Jenkins CI-CD success', to: ' Success_Email' 
+        }
+        failure
+        {
+            mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Jenkins CI-CD Failed', to: 'Failure_Email'
+        }
+}
+}
+}
+
+    }   
+}
+
