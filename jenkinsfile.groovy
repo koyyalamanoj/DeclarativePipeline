@@ -1,4 +1,6 @@
-import com.mercedesbenz.*;
+import com.myproject.*
+import com.myproject.mypipelinetype.*
+import com.myproject.mypipelinetype.YactoPipeline;
 
 def buildType = new YactoPipeline(
       dockerImage:'windows',
@@ -6,7 +8,6 @@ def buildType = new YactoPipeline(
       );
 
 buildType.startPipeline()
-
 
 
 
