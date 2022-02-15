@@ -13,17 +13,17 @@ class YactoPipeline extends BasePipelineType {
         runTestcommand()
     }
   
-    void buildStesps(){
+    def buildStesps(){
         def x = new Dsl() 
         x.print "checkout stage happens here: ${this.scmtype}"
        
     }
 
-    void dockerBuild(){
+    def dockerBuild(){
        // println "dockerbuilds happens here : ${this.dockerImage}"
         
     } 
-    void runTestcommand(){
+    def runTestcommand(){
         //  prinntln "executing test here with below command: \n"+''+ testcommand
         
     } 
