@@ -13,16 +13,16 @@ class YactoPipeline extends BasePipelineType {
     }
   
     void buildStesps(){
-        println "checkout stage happens here: ${this.scmtype}"
+        sh "echo checkout stage happens here: ${this.scmtype}"
        
     }
 
     void dockerBuild(){
-        println "dockerbuilds happens here : ${this.dockerImage}"
+        sh "echo dockerbuilds happens here : ${this.dockerImage}"
         
     } 
     void runTestcommand(){
-         println "executing test here with below command: \n"+''+ testcommand
+         sh "echo executing test here with below command: \n"+''+ testcommand
         
     } 
 }
