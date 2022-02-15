@@ -8,9 +8,9 @@ abstract class BasePipelineType  {
     def dockerFilePath = ''
     def dockerFileName = ''
   
-    abstract protected void buildStesps()
-    abstract protected void dockerBuild()
-    abstract protected void runTestcommand()
+     abstract protected def buildStesps()
+    abstract protected def dockerBuild()
+    abstract protected def runTestcommand()
 
     def startPipeline(){
         this.build()
